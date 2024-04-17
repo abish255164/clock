@@ -1,0 +1,74 @@
+
+<html>
+<head>
+<title></title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  form {
+    text-align: center;
+  }
+  
+  input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: green;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  
+  .logo img {
+    float: left;
+    margin-right: 10px;
+  }
+</style>
+</head>
+<body>
+
+<form id="loginForm" action="project1.html" method="post" onsubmit="return validateLogin()">
+  <div class="logo">
+    <img src="file:///C:/Users/Lenovo/Downloads/logo-1933884_640.webp" alt="Logo" width="50">
+  </div>
+  <h2>LOGIN PAGE</h2><br>
+  <label for="uname">USERNAME</label>
+  <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
+
+  <label for="psw">PASSWORD</label>
+  <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+
+  <button type="submit">Login</button>
+</form>
+
+<script>
+function validateLogin() {
+  var username = document.getElementById('uname').value;
+  var password = document.getElementById('psw').value;
+
+ 
+  if (username === 'abish' && password === 'abish1212') {
+    return true;   } else {
+    alert('Invalid username or password. Please try again.');
+    return false; 
+  }
+}
+</script>
+
+</body>
+</html>

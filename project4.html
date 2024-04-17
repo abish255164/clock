@@ -1,0 +1,313 @@
+
+
+<html>
+<head>
+ <title></title>
+    <style>
+        .logo {
+            text-align: left;
+            padding: 10px;
+        }
+
+        .logo img {
+            width: 50px;
+        }
+
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 300px;
+        }
+
+        nav ul li:last-child {
+            margin-right: 0;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .search-box {
+            margin-bottom: 20px;
+        }
+
+        .search-box input[type="text"] {
+            padding: 18px;
+            border-radius: 15px;
+            border: 1px solid #ccc;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .create-employee-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="file:///C:/Users/Lenovo/Downloads/logo-1933884_640.webp" alt="Logo" width="50">
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="project.html">Home</a></li>
+            <li><a href="project4.html">Employee List</a></li>
+            <li><a href="project3.html">Create Employee</a></li>
+            <li><a href="project.html">Logout</a></li>
+        </ul>
+    </nav>
+    <br><br>
+
+    <div class="table-header">
+        <div>
+            Total Employees: <span id="totalEmployees">5</span>
+        </div>
+        <button class="create-employee-btn" onclick="createEmployee()">Create Employee</button>
+    </div>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search...">
+    </div>
+
+    <table id="employeeTable">
+        <head>
+            <tr>
+                <th>ID</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile No</th>
+                <th>Designation</th>
+                <th>Gender</th>
+                <th>Course</th>
+                <th>Create Date</th>
+                <th>Action</th>
+            </tr>
+        </head>
+        <body>
+            
+            <tr>
+                <td>1</td>
+                <td><img src="path/to/image.jpg" alt="Employee Image" width="50"></td>
+                <td>hukum</td>
+                <td>hcgupta@cstech.in</td>
+                <td>954010044</td>
+                <td>HR</td>
+                <td>Male</td>
+                <td>MCA</td>
+                <td>2024-04-16</td>
+              <td>  <button onclick="editEmployee(0)">Edit</button>
+                <button onclick="deleteEmployee(0)">Delete</button>
+               </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td><img src="path/to/image.jpg" alt="Employee Image" width="50"></td>
+                <td>manish</td>
+                <td>manish@cstech.in</td>
+                <td>95401033</td>
+                <td>Sales</td>
+                <td>Male</td>
+                <td>BCA</td>
+                <td>2023-04-16</td>
+                <td>  <button onclick="editEmployee(0)">Edit</button>
+                    <button onclick="deleteEmployee(0)">Delete</button>
+                   </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td><img src="path/to/image.jpg" alt="Employee Image" width="50"></td>
+                <td>yash</td>
+                <td>yash@cstech.in</td>
+                <td>87484942</td>
+                <td>Manager</td>
+                <td>Male</td>
+                <td>BSC</td>
+                <td>2024-02-10</td>
+                <td>  <button onclick="editEmployee(0)">Edit</button>
+                    <button onclick="deleteEmployee(0)">Delete</button>
+                   </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td><img src="path/to/image.jpg" alt="Employee Image" width="50"></td>
+                <td>John </td>
+                <td>john@cstech.com</td>
+                <td>1234567890</td>
+                <td>Manager</td>
+                <td>Male</td>
+                <td>BCA</td>
+                <td>2024-04-16</td>
+                <td>  <button onclick="editEmployee(0)">Edit</button>
+                    <button onclick="deleteEmployee(0)">Delete</button>
+                   </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td><img src="path/to/image.jpg" alt="Employee Image" width="50"></td>
+                <td>Abish</td>
+                <td>abish12@cstech.com</td>
+                <td>1234567890</td>
+                <td>Manager</td>
+                <td>Male</td>
+                <td>MCA</td>
+                <td>2023-02-05</td>
+                <td>  <button onclick="editEmployee(0)">Edit</button>
+                    <button onclick="deleteEmployee(0)">Delete</button>
+                   </td>
+            </tr>
+            
+            <a href="project5.html">employee edit</a>
+        </tbody>
+    </table>
+
+    <script>
+        function filterTable() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("employeeTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2]; // Index 2 corresponds to the "Name" column
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function createEmployee() {
+            
+            var ID=prompt("enter id")
+            var name = prompt("Enter name:");
+            var email = prompt("Enter email:");
+            var mobileNo = prompt("Enter mobile number:");
+            var designation = prompt("Enter designation:");
+            var gender = prompt("Enter gender:");
+            var course = prompt("Enter course:");
+            var date =prompt("enter the date");
+        
+            var newRow = document.createElement("tr");
+
+            var idCell = document.createElement("td");
+            idCell.textContent = ""; 
+            newRow.appendChild(idCell);
+
+            var cellsData = [ID,name, email, mobileNo, designation, gender, course,date];
+            cellsData.forEach(function(data) {
+                var cell = document.createElement("td");
+                cell.textContent = data;
+                newRow.appendChild(cell);
+            });
+
+           
+            var actionCell = document.createElement("td");
+            var editButton = document.createElement("button");
+            editButton.textContent = "Edit";
+            editButton.onclick = function() { editEmployee(newRow.rowIndex - 1); };
+            var deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.onclick = function() { deleteEmployee(newRow.rowIndex - 1); };
+            actionCell.appendChild(editButton);
+            actionCell.appendChild(deleteButton);
+            newRow.appendChild(actionCell);
+
+            
+            document.querySelector("#employeeTable tbody").appendChild(newRow);
+
+           
+            updateTotalEmployeesCount();
+        }
+
+        function editEmployee(rowId) {
+            
+            var row = document.getElementById("employeeTable").rows[rowId + 1]; 
+
+            
+            var name = row.cells[2].innerText;
+            var email = row.cells[3].innerText;
+            var mobileNo = row.cells[4].innerText;
+            var designation = row.cells[5].innerText;
+            var gender = row.cells[6].innerText;
+            var course = row.cells[7].innerText;
+
+          
+            alert("Editing Employee:\nName: " + name + "\nEmail: " + email + "\nMobile No: " + mobileNo + "\nDesignation: " + designation + "\nGender: " + gender + "\nCourse: " + course);
+        }
+
+        function deleteEmployee(rowId) {
+          
+            var row = document.getElementById("employeeTable").rows[rowId + 1]; 
+
+         
+            if (confirm("Are you sure you want to delete this employee?")) {
+                
+                row.remove();
+               
+                updateTotalEmployeesCount();
+            }
+        }
+
+        function updateTotalEmployeesCount() {
+         
+            var rowCount = document.getElementById("employeeTable").rows.length - 1; 
+            document.getElementById("totalEmployees").textContent = rowCount;
+        }
+    </script>
+</body>
+</html>
+
+
+
